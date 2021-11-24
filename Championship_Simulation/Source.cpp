@@ -43,27 +43,32 @@ void show_teams(Team* head) {
 	}
 }
 
-void disqualify_teams(Team** head, int points) {
+void disqualify_teams(Team* &head, int points) {
 	//This function has the role to delete all the elements from the linked list that are smaller than a specific number
 
-	Team* temp = *head,* prev=nullptr;
-
-	if (temp != NULL && temp->points < points) {
-		*head = temp->next;
-		free(temp);
-		temp = *head;
+	while (head->points < points) {
+		Team* victim = head;
+		head = head->next;
+		delete victim;
 	}
-	while (temp != NULL) {
-		while (temp != NULL && temp->points > points) {
-			prev = temp;
-			temp = temp->next;
+
+	Team* elem = head,*prev = nullptr;
+	while ( elem->next != nullptr) {
+		if (elem->points >= points) {
+			prev = elem;
+			elem = elem->next;
 		}
-		if (temp == NULL) {
-			return;
+		else if (elem->points < points) {
+			if (elem->next == nullptr) {
+				prev->next = nullptr;
+			}
+			else {
+				Team* victim = elem;
+				prev->next = prev->next->next;
+				elem = elem->next;
+				delete victim;
+			}
 		}
-		prev->next = temp->next;
-		delete temp;
-		temp = prev->next;
 	}
 }
 
@@ -196,9 +201,9 @@ int main() {
 	show_teams(head_team);
 	cout << endl;
 	int min_points = get_minimum_points(n,points);
-	
+	cout << endl<<min_points << endl;
 	cout << "The following teams have scored higher than the average and are eligible for the prize pool:"<<endl;
-	disqualify_teams(&head_team, min_points);
+	disqualify_teams(head_team, min_points);
 	show_teams(head_team);
 
 	cout<<endl<<"The Championship leaderboard stands as follows:" << endl;

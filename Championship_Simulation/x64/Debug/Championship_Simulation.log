@@ -1,2 +1,2 @@
-﻿  Source.cpp
-  Championship_Simulation_C++.vcxproj -> C:\Users\Catalin\source\repos\Championship_Simulation_C++\x64\Debug\C++_Championship_Simulation.exe
+﻿C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\MSBuild\Microsoft\VC\v160\Microsoft.CppBuild.targets(452,5): warning MSB8028: The intermediate directory (x64\Debug\) contains files shared from another project (C++_Championship_Simulation.vcxproj).  This can lead to incorrect clean and rebuild behavior.
+  Championship_Simulation.vcxproj -> C:\Users\Catalin\Desktop\CV_PROJECTS\Championship_Simulation\x64\Debug\C++_Championship_Simulation.exe
