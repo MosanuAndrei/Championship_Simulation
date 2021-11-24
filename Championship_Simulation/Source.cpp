@@ -54,11 +54,11 @@ void disqualify_teams(Team* &head, int points) {
 
 	Team* elem = head,*prev = nullptr;
 	while ( elem->next != nullptr) {
-		if (elem->points >= points) {
+		if (elem->points > points) {
 			prev = elem;
 			elem = elem->next;
 		}
-		else if (elem->points < points) {
+		else if (elem->points <= points) {
 			if (elem->next == nullptr) {
 				prev->next = nullptr;
 			}
@@ -201,7 +201,7 @@ int main() {
 	show_teams(head_team);
 	cout << endl;
 	int min_points = get_minimum_points(n,points);
-	cout << endl<<min_points << endl;
+	cout << endl<<"Average: "<<min_points << endl;
 	cout << "The following teams have scored higher than the average and are eligible for the prize pool:"<<endl;
 	disqualify_teams(head_team, min_points);
 	show_teams(head_team);
